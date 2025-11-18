@@ -1,0 +1,278 @@
+/* main font-style */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Plaster&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* for artyfyme-text */
+/* @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap'); */
+
+@font-face {
+    font-family: 'Orbitron';
+    /* Use the path to the font file */
+    src: url('./assets/fonts/orbitron-master/Orbitron\ Medium.otf') format('truetype');
+    /* Set the weight for this specific file */
+    font-weight: 450; 
+    font-style: normal;
+    font-display: swap; /* Tells the browser how to load the font */
+}
+
+/* for istyle */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+/* for theme-text */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* --------------------------------------------------- */
+
+html,body{
+    background: #f8f9fc;
+    height: 100vh;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+/* --------------------------------------------------- */
+
+.leftcard{
+    height: 100vh;
+}
+
+.rounded{
+    margin: 0;
+    height: 100vh;
+    /* background-color: rgb(86, 200, 245); */
+    background: linear-gradient(135deg, #4CC7F1, #0099cc);
+    /* background-image: url(./assets/images/5072616.jpg); */
+    /* background-image: url(./assets/images/left-bg.jpg); */
+
+    background-position: right;
+    background-size: cover;
+    border-radius: 0px 200px 200px 0px !important;
+    padding: 2rem;
+    overflow-y: auto;  /* ✔ Allows scrolling if content overflows */
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+
+
+
+.artifyme-text {
+    /* font-family: "Audiowide", sans-serif; */
+    /* font-family: 'Orbitron', sans-serif; */
+    /* font-style: normal; */
+    font-family: "Cormorant Garamond", serif; 
+    font-optical-sizing: auto;
+    font-size: 3rem; 
+    font-weight: 700;
+    
+    color: transparent; 
+    
+    /* -webkit-text-stroke: 1px white;  */
+    
+    /* text-shadow: 
+        1px 1px 0 white,
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        
+        2px 2px 0 #00FFFF, 
+        
+        -3px -2px 0 #FF00FF;  */
+        color: #004a7c;
+
+    line-height: 0.8; 
+    letter-spacing: 0.5rem;
+    margin-bottom: 0;
+}
+
+.theme-text{
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: "Cormorant Garamond", serif; 
+    font-optical-sizing: auto;
+    
+    /* color: rgb(0, 0, 0); */
+    color: #333;
+    font-weight:500;
+    /* text-shadow: 2px 2px rgb(86, 200, 245); */
+}
+
+.dvlogo {
+    background-image: url("./assets/images/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* width: 30vh; 
+    height: 30vh; */
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    aspect-ratio: 1/1;
+    background-size: contain;
+    border-radius: 5px;
+  /* margin: 1rem 0; */
+}
+
+
+
+.rightcard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; 
+    width: 50%;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: auto;
+}
+
+
+.form-style{  
+    margin-bottom: 3rem;
+}
+
+label{
+    font-size: 18px;
+}
+
+/* input {
+    border: none !important;
+    border-bottom: 2px solid rgb(86, 200, 245) !important;
+    outline: none !important;
+} */
+
+input {
+    width: 100% !important;
+    padding: 8px !important;
+    margin: 5px 0 !important;
+    border: none !important;
+    border-bottom: 2px solid #4CC7F1 !important;
+    font-size: 16px !important;
+    outline: none !important;
+}
+
+input:focus {
+    border-bottom-color: #0077b6 !important;
+}
+
+.logbtn{
+    background: #00bdf2;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logbtn:hover {
+  background: #0099cc;
+}
+
+.register{
+    color: rgb(51, 123, 152) !important;
+}
+
+.register:hover{
+    text-shadow: 1px 1px rgb(22, 62, 78) !important;
+    font-size: 1.5rem !important;
+}
+
+/* --------------------------------------------------- */
+/* 
+.topcard{
+    height: 25vh;
+    background-image: url("../assets/images/left-bg.jpg");
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(55, 55, 55);
+}
+
+.mvlogo {
+  background-image: url("../assets/images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 15vh; 
+  height: 15vh;
+  margin-top: 10px;
+  margin-left: 20px;
+  display: block;
+  border-radius: 5px;
+}
+
+.artifyme-textmv{
+    font-family: 'Orbitron', sans-serif;
+    font-style: normal;
+    font-size: 4.4vw; 
+    font-weight: bold;
+    
+    color: transparent; 
+    
+    -webkit-text-stroke: 1px white; 
+    
+    text-shadow: 
+        1px 1px 0 white,
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        
+        2px 2px 0 #00FFFF, 
+        
+        -3px -2px 0 #FF00FF; 
+
+    line-height: 0.85; 
+}
+
+.istylemv {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+
+    font-style: normal;
+    font-size: 8vw;
+    font-weight: bold;
+    
+    color: transparent; 
+    
+    -webkit-text-stroke: 1px white; 
+    
+    text-shadow: 
+        1px 1px 0 white,
+        -1px -1px 0 white,
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        
+        2px 2px 0 #00FFFF, 
+        
+        -3px -2px 0 #FF00FF; 
+
+    line-height: 0.8;   
+}
+
+.bottomcard{
+    height: 65vh; 
+    box-shadow: 0px 0px 10px rgb(55, 55, 55);
+    border-radius: 10px;
+}
+
+.form-style-mv{
+    width: 100%;
+    height: 50vh; 
+    box-shadow: 5px 5px 10px rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+.submit-mv{
+    font-size: 0.8rem;
+} */
