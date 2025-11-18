@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>REGISTER PAGE</p>
+    <p>REGISTER PAGE Hi My name is </p>
 </body>
 </html>
