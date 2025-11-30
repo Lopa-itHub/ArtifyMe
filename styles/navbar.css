@@ -1,0 +1,154 @@
+/* main font-style */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* for artifyme-text */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* --------------------------------------------------- */
+
+html, body {
+    background: #fdfdff;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    height: 13vh;
+    background: linear-gradient(180deg, #4CC7F1, #09b7f1);
+    box-shadow: 1px 0px 7px rgb(252, 181, 193);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 0px 0px 50px 50px;
+}
+
+.logo {
+    background-image: url("../assets/images/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 15vh;
+    height: 10vh;
+}
+
+.topcontent{
+    display: flex;
+    direction: column;
+}
+
+.artifyme-text {
+    font-family: "Cormorant Garamond", serif; 
+    font-optical-sizing: auto;
+    font-size: 2.3vw; 
+    font-weight: 700;
+    
+    color: transparent; 
+    color: #004a7c;
+
+    line-height: 0.8; 
+    letter-spacing: 0.3rem;
+    margin-bottom: 0;
+}
+
+.theme-text{
+    display: flex;
+    align-items: center;
+    font-size: 1vw;
+    font-family: "Cormorant Garamond", serif; 
+    font-optical-sizing: auto;
+    color: #333;
+    font-weight:600;
+}
+
+@media (max-width: 767px) {
+
+    .artifyme-text {
+    font-family: "Cormorant Garamond", serif; 
+    font-optical-sizing: auto;
+    font-size: 4.3vw; 
+    font-weight: 700;
+    
+    color: transparent; 
+    color: #004a7c;
+
+    line-height: 0.8; 
+    letter-spacing: 0.5rem;
+    margin-bottom: 0;
+    }
+
+    .theme-text{
+        display: flex;
+        align-items: center;
+        font-size: 2vw;
+        font-family: "Cormorant Garamond", serif; 
+        font-optical-sizing: auto;
+        color: #333;
+        font-weight:500;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 13vh; 
+    bottom: 7vh;
+    left: 0;
+    width: 17%;
+    height: calc(100vh - 8vh);
+    background: #fff;
+    box-shadow: 0px 1px 7px rgb(121, 209, 249);
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 2.3vh;
+    font-weight: 500;
+    border-top: 0;
+}
+
+
+
+.hero {
+    margin-top: 12vh;
+    width: 83%;  
+    padding: 2vh;
+    margin-top: 12vh;   
+    margin-left: 17%;  
+}
+
+.content{
+    margin: 3vh;
+    margin-bottom: 0;
+    padding: 8vh;
+}
+
+.searchbar {
+    width: 25%;
+    height: 58%;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(40, 84, 139, 0.25); 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.searchbar input {
+    border-radius: 8px;
+    padding: 6px 10px;
+    box-shadow: none !important;
+}
+
+.search-icon {
+    font-size: 18px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .searchbar {
+        width: 55%;
+    }
+}
