@@ -1,7 +1,108 @@
-<?php include_once "../navbar.php"; ?>
+<?php 
+include_once "../navbar.php"; 
+include_once "../dbConnect.php";
+
+
+    if (!isset($_SESSION['id']) || !isset($_SESSION['user_type'])) {
+        header("location: ../login.php");
+        exit;
+    }
+
+    if ($_SESSION['user_type'] !== "designer") {
+        header("location: ../login.php");
+        exit;
+    }
+
+$message = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $templateName = $_POST['template_name'];
+
+    // Create unique folder
+    $uniqueFolder = "template_" . time();
+    $targetFolder = "../templates/" . $uniqueFolder;
+    mkdir($targetFolder, 0777, true);
+
+    // Upload ZIP
+    $zipTemp = $_FILES['zipFile']['tmp_name'];
+    $zipName = time() . "_" . $_FILES['zipFile']['name'];
+    $zipPath = "../uploads/" . $zipName;
+
+    if (move_uploaded_file($zipTemp, $zipPath)) {
+
+        // Extract ZIP
+        $zip = new ZipArchive;
+        if ($zip->open($zipPath) === TRUE) {
+            $zip->extractTo($targetFolder);
+            $zip->close();
+        }
+
+        // AUTO DETECT FILES
+        $templateFile = "";
+        $schemaFile = "";
+
+        $files = scandir($targetFolder);
+
+        foreach ($files as $f) {
+            if (strpos($f, ".html") !== false) {
+                $templateFile = $f;
+            }
+            if (strpos($f, ".json") !== false) {
+                $schemaFile = $f;
+            }
+        }
+
+        // Detect preview image
+        $previewImage = "";
+        if (file_exists($targetFolder . "/preview.png")) {
+            $previewImage = $uniqueFolder . "/preview.png"; // IMPORTANT FIX
+        }
+
+        $designerId = $_SESSION['id'];
+
+        // Insert into DB
+        $sql = "INSERT INTO templates 
+                (template_name, folder_name, preview_image, template_file, schema_file,designer_id, status)
+                VALUES (?, ?, ?,?, ?, ?, 'pending')";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("sssssi", 
+            $templateName,
+            $uniqueFolder,
+            $previewImage,
+            $templateFile,
+            $schemaFile,
+            $designerId
+        );
+
+        if ($stmt->execute()) {
+            $message = "Template uploaded successfully!";
+        } else {
+            $message = "DB Error: " . $con->error;
+        }
+
+    } else {
+        $message = "Zip upload failed!";
+    }
+}
+?>
     <div>
         <h1>Designer Dashboard</h1>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, magni accusantium ipsam alias dolore cupiditate. Doloribus molestiae autem corrupti dignissimos deserunt earum neque cum voluptatem. Et maxime, molestiae natus soluta est quasi aspernatur dolores adipisci facilis aliquid iusto perspiciatis veritatis, rem reprehenderit quos libero ullam dicta dignissimos fuga esse a. Voluptates a reprehenderit est architecto odio laboriosam repellat, aut voluptatibus sed eos optio laborum modi ex eaque sint et necessitatibus doloribus. Obcaecati nam, officiis molestias, ipsum doloremque recusandae ipsam fuga sint sed, quisquam libero alias eius! Sunt laboriosam quae repellat ratione, dolore cumque nisi odit quibusdam suscipit. Deserunt velit ab repellat in enim aliquid consequuntur quis dicta tempore minima voluptatibus quo possimus, adipisci autem aut non. Soluta fugiat pariatur mollitia dicta aut earum molestiae dolore similique, reiciendis, perspiciatis quo cumque, culpa nulla hic voluptas nisi sit! Dignissimos labore aut dolorem mollitia, reiciendis unde ullam vel similique consequuntur vitae voluptas perferendis iure fuga dicta at, nesciunt dolore cupiditate numquam officia odit. Officia voluptatum blanditiis aliquid odio rerum deserunt nam omnis magni excepturi tempora saepe explicabo ducimus ut perspiciatis quaerat, cumque accusamus ullam laborum optio libero. Tenetur commodi eum repellendus? Doloribus illo repellat in id voluptates sint reiciendis ratione nostrum quis consectetur doloremque suscipit at quasi ab laudantium adipisci dolorem facilis, praesentium delectus tempora quidem saepe. Eligendi quam alias accusamus, odit quasi inventore velit hic neque repellendus quibusdam nulla delectus, sapiente pariatur, voluptatem doloribus quod aliquam. Voluptate asperiores architecto fuga nostrum laudantium aut, qui quas unde accusamus quidem sunt temporibus nesciunt doloremque velit rem ullam quae molestiae id corporis officiis a consectetur laboriosam distinctio! Reiciendis, esse dignissimos! Perspiciatis mollitia voluptatem aliquam aut laborum doloribus nesciunt libero. At reiciendis, repellendus ab sequi iure ducimus voluptas perspiciatis nihil minima temporibus magni illo, earum voluptatem esse dolorum, quia debitis asperiores voluptatibus exercitationem repellat obcaecati ea? Magni exercitationem, ducimus explicabo nemo suscipit a corrupti excepturi porro, aliquam rerum fugit officiis est odio. Sit vero hic incidunt delectus consectetur doloribus, error rerum magni odit dolores? Culpa deleniti blanditiis aut deserunt a consequatur nostrum ipsum, voluptatem at quod, consectetur doloribus officia aperiam totam saepe consequuntur. Reprehenderit dolore adipisci incidunt fugiat autem blanditiis cum, distinctio, quod rerum eaque laudantium eligendi temporibus repellendus, explicabo assumenda debitis! Dolore soluta voluptatem reprehenderit magni corrupti illum nemo sequi veniam inventore, saepe ullam eligendi asperiores tenetur autem incidunt quia non perspiciatis facere in harum similique quisquam error est tempore? Nihil, provident. Illo ipsam, non maxime nobis modi id placeat a vero ad adipisci ab sequi dolore architecto nesciunt temporibus laudantium animi magni necessitatibus eius molestiae. Molestias at iusto quibusdam voluptate laudantium, aspernatur facere eius fugiat architecto ab, culpa id, mollitia vel cupiditate et assumenda provident eveniet eligendi aliquid necessitatibus odit repellat? Corporis officia, atque neque enim aperiam id iure corrupti animi nemo deleniti, quo libero vitae suscipit! Sunt, magni! Velit sit labore corrupti quidem sapiente, molestiae perspiciatis repudiandae facilis, optio ipsum, eveniet quaerat. Autem repellendus soluta fuga, vel atque neque a sint perferendis laborum, asperiores aliquam, dolores laboriosam deserunt! Asperiores reiciendis a modi veritatis!</P>
+
+        <div class="box">
+            <?php if ($message) echo "<p class='msg'>$message</p>"; ?>
+
+            <h3>Upload Template (ZIP)</h3>
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                <input type="text" name="template_name" placeholder="Template Name" class="form-control" required><br>
+                <input type="file" name="zipFile" accept=".zip" class="form-control" required><br>
+                
+                <button type="submit">Upload Template</button>
+            </form>
+        </div>
+
     </div>
     
 <?php include_once "../footer.php"; ?>
