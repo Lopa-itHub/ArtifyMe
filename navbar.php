@@ -16,7 +16,12 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['user_type'])) {
 
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/designerStyles.css">
+    <link rel="stylesheet" href="../styles/adminStyles.css">
+    <link rel="stylesheet" href="../styles/userStyles.css">
+    <link rel="stylesheet" href="../styles/editor.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -47,7 +52,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['user_type'])) {
 
                 <?php if ($_SESSION['user_type'] == "user") { ?>
                     <li class="nav-item"><a class="nav-link" href="../3user_dashboard/profile.php">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../3user_dashboard/dashboard.php">User Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../3user_dashboard/user_dashboard.php">User Dashboard</a></li>
                     <div>
                         <li class="nav-item"><a class="nav-link" href="../logout.php">Logout</a></li>
                     </div>

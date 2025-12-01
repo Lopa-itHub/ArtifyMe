@@ -4,7 +4,7 @@ $templateId = $_GET['id'];
 
 include "dbConnect.php";
 
-$q = $con->prepare("SELECT * FROM template_dummy WHERE id=?");
+$q = $con->prepare("SELECT * FROM templates WHERE id=?");
 $q->bind_param("i", $templateId);
 $q->execute();
 $t = $q->get_result()->fetch_assoc();
@@ -16,7 +16,23 @@ if (!isset($_POST['cleanHtml'])) {
 }
 
 $body = $_POST['cleanHtml'];
-$css  = file_get_contents("$folder/dummy.css");
+// AUTO-DETECT CSS FILE
+$css = "";
+$cssFile = "";
+
+$files = scandir($folder);
+
+foreach ($files as $f) {
+    if (preg_match('/\.css$/i', $f)) {   // find ANY .css file
+        $cssFile = $f;
+        break;  // stop after first match
+    }
+}
+
+if ($cssFile) {
+    $css = file_get_contents("$folder/$cssFile");
+}
+
 
 // Build full HTML
 $finalHtml = "

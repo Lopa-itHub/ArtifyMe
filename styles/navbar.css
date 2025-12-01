@@ -18,12 +18,13 @@ html, body {
 .topbar {
     position: fixed;
     top: 0;
+    left: 17vw;
     height: 13vh;
     background: linear-gradient(180deg, #4CC7F1, #09b7f1);
     box-shadow: 1px 0px 7px rgb(252, 181, 193);
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 82.5%;
     border-radius: 0px 0px 50px 50px;
 }
 
@@ -94,11 +95,11 @@ html, body {
 
 .sidebar {
     position: fixed;
-    top: 13vh; 
-    bottom: 7vh;
+    top: 0; 
+    bottom: 0;
     left: 0;
     width: 17%;
-    height: calc(100vh - 8vh);
+    height: 100vh;
     background: #fff;
     box-shadow: 0px 1px 7px rgb(121, 209, 249);
     padding: 20px;
@@ -121,7 +122,7 @@ html, body {
 .content{
     margin: 3vh;
     margin-bottom: 0;
-    padding: 8vh;
+    padding: 5vh;
 }
 
 .searchbar {

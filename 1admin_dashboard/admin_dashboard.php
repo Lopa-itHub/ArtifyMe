@@ -1,7 +1,67 @@
-    <?php include_once "../navbar.php"; ?>
+    <?php 
+    include_once "../navbar.php"; 
+    include "../dbConnect.php";
+
+
+    if (!isset($_SESSION['id']) || !isset($_SESSION['user_type'])) {
+        header("location: ../login.php");
+        exit;
+    }
+
+    if ($_SESSION['user_type'] !== "admin") {
+        header("location: ../login.php");
+        exit;
+    }
+
+
+    if (isset($_GET['approve_id'])) {
+
+    $id = intval($_GET['approve_id']);
+
+    $con->query("UPDATE templates SET status='approved' WHERE id=$id");
+
+    echo "<script>
+            alert('Template Approved Successfully!');
+            window.location='admin_dashboard.php';
+            </script>";
+    exit;
+    }
+    ?>
     <div>
         <h1>Admin Dashboard</h1>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, magni accusantium ipsam alias dolore cupiditate. Doloribus molestiae autem corrupti dignissimos deserunt earum neque cum voluptatem. Et maxime, molestiae natus soluta est quasi aspernatur dolores adipisci facilis aliquid iusto perspiciatis veritatis, rem reprehenderit quos libero ullam dicta dignissimos fuga esse a. Voluptates a reprehenderit est architecto odio laboriosam repellat, aut voluptatibus sed eos optio laborum modi ex eaque sint et necessitatibus doloribus. Obcaecati nam, officiis molestias, ipsum doloremque recusandae ipsam fuga sint sed, quisquam libero alias eius! Sunt laboriosam quae repellat ratione, dolore cumque nisi odit quibusdam suscipit. Deserunt velit ab repellat in enim aliquid consequuntur quis dicta tempore minima voluptatibus quo possimus, adipisci autem aut non. Soluta fugiat pariatur mollitia dicta aut earum molestiae dolore similique, reiciendis, perspiciatis quo cumque, culpa nulla hic voluptas nisi sit! Dignissimos labore aut dolorem mollitia, reiciendis unde ullam vel similique consequuntur vitae voluptas perferendis iure fuga dicta at, nesciunt dolore cupiditate numquam officia odit. Officia voluptatum blanditiis aliquid odio rerum deserunt nam omnis magni excepturi tempora saepe explicabo ducimus ut perspiciatis quaerat, cumque accusamus ullam laborum optio libero. Tenetur commodi eum repellendus? Doloribus illo repellat in id voluptates sint reiciendis ratione nostrum quis consectetur doloremque suscipit at quasi ab laudantium adipisci dolorem facilis, praesentium delectus tempora quidem saepe. Eligendi quam alias accusamus, odit quasi inventore velit hic neque repellendus quibusdam nulla delectus, sapiente pariatur, voluptatem doloribus quod aliquam. Voluptate asperiores architecto fuga nostrum laudantium aut, qui quas unde accusamus quidem sunt temporibus nesciunt doloremque velit rem ullam quae molestiae id corporis officiis a consectetur laboriosam distinctio! Reiciendis, esse dignissimos! Perspiciatis mollitia voluptatem aliquam aut laborum doloribus nesciunt libero. At reiciendis, repellendus ab sequi iure ducimus voluptas perspiciatis nihil minima temporibus magni illo, earum voluptatem esse dolorum, quia debitis asperiores voluptatibus exercitationem repellat obcaecati ea? Magni exercitationem, ducimus explicabo nemo suscipit a corrupti excepturi porro, aliquam rerum fugit officiis est odio. Sit vero hic incidunt delectus consectetur doloribus, error rerum magni odit dolores? Culpa deleniti blanditiis aut deserunt a consequatur nostrum ipsum, voluptatem at quod, consectetur doloribus officia aperiam totam saepe consequuntur. Reprehenderit dolore adipisci incidunt fugiat autem blanditiis cum, distinctio, quod rerum eaque laudantium eligendi temporibus repellendus, explicabo assumenda debitis! Dolore soluta voluptatem reprehenderit magni corrupti illum nemo sequi veniam inventore, saepe ullam eligendi asperiores tenetur autem incidunt quia non perspiciatis facere in harum similique quisquam error est tempore? Nihil, provident. Illo ipsam, non maxime nobis modi id placeat a vero ad adipisci ab sequi dolore architecto nesciunt temporibus laudantium animi magni necessitatibus eius molestiae. Molestias at iusto quibusdam voluptate laudantium, aspernatur facere eius fugiat architecto ab, culpa id, mollitia vel cupiditate et assumenda provident eveniet eligendi aliquid necessitatibus odit repellat? Corporis officia, atque neque enim aperiam id iure corrupti animi nemo deleniti, quo libero vitae suscipit! Sunt, magni! Velit sit labore corrupti quidem sapiente, molestiae perspiciatis repudiandae facilis, optio ipsum, eveniet quaerat. Autem repellendus soluta fuga, vel atque neque a sint perferendis laborum, asperiores aliquam, dolores laboriosam deserunt! Asperiores reiciendis a modi veritatis!</P>
+        <h3>Pending Templates</h3>
     </div>
+
+    <?php
+    // Fetch pending templates
+    $sql = "SELECT * FROM templates WHERE status='pending'";
+    $result = $con->query($sql);
+
+    if ($result->num_rows == 0) {
+        echo "<p>No pending templates.</p>";
+    }
+
+    while ($row = $result->fetch_assoc()) {
+
+        // Correct preview path
+        $previewPath = "../templates/" . $row['preview_image'];
+
+        // If missing preview file → use placeholder
+        if (!file_exists($previewPath) || empty($row['preview_image'])) {
+            $previewPath = "assets/no-preview.png"; // Add a placeholder
+        }
+
+        echo "
+        <div class='card'>
+            <img class='preview' src='$previewPath' alt='Preview'>
+
+            <div>
+                <h4>{$row['template_name']}</h4>
+                <p><b>Folder:</b> {$row['folder_name']}</p>
+                <a class='approve-btn' href='admin_dashboard.php?approve_id={$row['id']}'>Approve</a>
+            </div>
+        </div>";
+    }
+    ?>
     
     <?php include_once "../footer.php"; ?>

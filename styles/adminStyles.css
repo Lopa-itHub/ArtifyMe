@@ -1,0 +1,30 @@
+.card {
+    border: 1px solid #aaa;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.preview {
+    width: 150px;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.approve-btn {
+    background: green;
+    padding: 8px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.approve-btn:hover {
+    background: darkgreen;
+}
+
+h2 { color: #333; }
