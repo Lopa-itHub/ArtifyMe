@@ -1,0 +1,52 @@
+body {
+    background: #eef1f6;
+}
+
+/* Center card */
+.card-wrapper-admin {
+    max-width: 100px; 
+    margin: 0 auto;
+}
+
+.template-card-admin {
+    width: 50%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: #fff;
+    padding-bottom: 20px;
+}
+
+/* Bigger Image */
+.template-card-admin img {
+    width: 500px;
+    height: 200px;              
+    object-fit: contain;        
+    background: #f7f7f7;
+    padding: 15px;
+    justify-content: center;
+}
+
+.template-card-admin .card-body-admin {
+    padding: 25px;
+}
+
+.template-title-admin {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.info-item-admin {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+
+@media (max-width: 576px) {
+    .template-card-admin img {
+        height: 300px;
+    }
+}

@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
     <div>
-        <h1>Designer Dashboard</h1>
+        <h1 class="text-center text-info mb-5">UPLOAD DESIGN</h1>
 
         <div class="box">
             <?php if ($message) echo "<p class='msg'>$message</p>"; ?>
