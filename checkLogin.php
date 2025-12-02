@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    require_once "dbconnect.php";
+    require_once "dbConnect.php";
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     session_start();
     $_SESSION['id'] = $user['id'];
     $_SESSION['user_type'] = $user['user_type'];
+    $_SESSION['name'] = $user['name'];
 
     echo $user['user_type'];
     exit;

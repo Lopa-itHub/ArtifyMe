@@ -25,7 +25,6 @@
     <div class="container-fluid bg-light">
         <div class="row">
 
-            <!-- LEFT: LIVE PREVIEW -->
             <div class="col-md-8">
                 <h3>Live Preview</h3>
                 <iframe id="previewFrame"></iframe>
@@ -35,7 +34,6 @@
                 
             </div>
 
-            <!-- RIGHT: FORM -->
             <div class="col-md-4">
                 <h3>Edit Information</h3>
                 <form id="editForm" enctype="multipart/form-data"></form>
@@ -44,14 +42,12 @@
     </div>
 
     <script>
-        let formData = {}; // store all updated values
+        let formData = {}; 
 
         $(document).ready(function() {
 
-            // Load template into iframe
             $("#previewFrame").attr("src", "<?php echo $templateHTML; ?>");
 
-            // Load schema.json and build form
             $.getJSON("<?php echo $schemaJSON; ?>", function(schema) {
 
                 schema.fields.forEach(field => {

@@ -27,4 +27,35 @@
     background: darkgreen;
 }
 
-h2 { color: #333; }
+h2 { 
+    color: #333; 
+}
+
+
+.delete-icon{
+    border-radius: 1vh;
+    height: 6.2vh;
+    width: 6.2vh;
+    background-image: url("../assets/images/delete_icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.delete-icon:hover{
+    box-shadow: 2px 2px 5px rgb(67, 63, 63);
+}
+
+.view-icon{
+    border-radius: 1vh;
+    height: 6.2vh;
+    width: 6.2vh;
+    background-image: url("../assets/images/view_icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.view-icon:hover{
+    box-shadow: 2px 2px 5px rgb(67, 63, 63);
+}

@@ -1,0 +1,49 @@
+{
+  "fields": [
+    {
+      "id": "profilePic",
+      "label": "Profile Picture",
+      "type": "image"
+    },
+    {
+      "id": "fullName",
+      "label": "Full Name",
+      "type": "text"
+    },
+    {
+      "id": "email",
+      "label": "Email Address",
+      "type": "text"
+    },
+    {
+      "id": "mobile",
+      "label": "Mobile Number",
+      "type": "text"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn Profile URL",
+      "type": "text"
+    },
+    {
+      "id": "languages",
+      "label": "Languages (comma-separated)",
+      "type": "text"
+    },
+    {
+      "id": "skills",
+      "label": "Skills (comma-separated)",
+      "type": "text"
+    },
+    {
+      "id": "education",
+      "label": "Education (comma-separated)",
+      "type": "text"
+    },
+    {
+      "id": "projects",
+      "label": "Projects (JSON: [{title:'',description:''}])",
+      "type": "textarea"
+    }
+  ]
+}
